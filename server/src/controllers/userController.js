@@ -119,4 +119,16 @@ const resetPassword = async (req, res) => {
     });
   }
 };
-module.exports = { registerUser, loginUser, resetPassword };
+
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(404).json({
+      status: "Fail",
+      message: error,
+    });
+  }
+};
+module.exports = { registerUser, loginUser, resetPassword, getAllUsers };
